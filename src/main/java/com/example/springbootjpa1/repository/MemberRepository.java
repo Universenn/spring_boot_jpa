@@ -1,6 +1,6 @@
 package com.example.springbootjpa1.repository;
 
-import com.example.springbootjpa1.entity.Member;
+import com.example.springbootjpa1.domain.entity.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
