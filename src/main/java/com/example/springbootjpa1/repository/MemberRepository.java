@@ -1,17 +1,19 @@
 package com.example.springbootjpa1.repository;
 
 import com.example.springbootjpa1.domain.entity.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
+
     // EntityManager 주입
-    private EntityManager em;
+    private final EntityManager em;
 
     public Long save(Member member) {
         // 저장
@@ -20,7 +22,19 @@ public class MemberRepository {
         return member.getId();
     }
 
-    public Member find(Long id) {
+    public Member findOne(Long id) {
         return em.find(Member.class, id);
+    }
+
+    public List<Member> findAll() {
+        List<Member> result =em.createQuery("select m from Member m", Member.class) // jpql Entity 객체를 대상으로 쿼리를 한다.
+                .getResultList();
+        return result;
+    }
+
+    public List<Member> findByName(String name) {
+        return em.createQuery("select m from Member m where m.userName = :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
     }
 }
