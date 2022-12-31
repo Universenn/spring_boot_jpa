@@ -15,7 +15,7 @@ public class Delivery {
 
     // OneToOne 은 둘다 포링키(FK)를 둬도 되지만
     // order 에서 엑셉스 를 많이 하는 곳에다 두는걸 좋아한다.
-    @OneToOne(mappedBy = "delivery") // 거울
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY) // 거울
     private Order order;
 
     @Embedded
