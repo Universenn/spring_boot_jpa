@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,6 +26,7 @@ public class MemberController {
         model.addAttribute("memberForm", new MemberForm()); //
         return "members/createMemberForm";
     }
+
     @PostMapping("/members/new")
     public String create(@Valid MemberForm form, BindingResult result) { // 오류가 담겨서 실행 된다
 
@@ -42,4 +44,10 @@ public class MemberController {
         return "redirect:/"; // home 으로 다시 넘기기
     }
 
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
+    }
 }
