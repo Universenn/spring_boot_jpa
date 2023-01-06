@@ -17,6 +17,9 @@ public class ItemRepository {
         if (item.getId() == null) {
             em.persist(item);
         } else {
+            // merge 를 하면 준영속성 컨텍스트를 영속석 컨텍스트로 바꿔준다.
+            // merge 는 병합 이여서 바뀌지 않는 값도 바꿔준다. (null)
+            // 그래서 Entity 를 변경 할 때는 항상 merge 말고 변경감지를 사용해야한다.
             em.merge(item);
         }
     }
