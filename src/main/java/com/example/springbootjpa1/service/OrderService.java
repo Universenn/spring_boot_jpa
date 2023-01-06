@@ -8,9 +8,12 @@ import com.example.springbootjpa1.domain.item.Item;
 import com.example.springbootjpa1.repository.ItemRepository;
 import com.example.springbootjpa1.repository.MemberRepository;
 import com.example.springbootjpa1.repository.OrderRepository;
+import com.example.springbootjpa1.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -51,5 +54,9 @@ public class OrderService {
         // 주문 엔티티 조회
         Order order = orderRepository.findOne(orderId);
         order.cancel();
+    }
+
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
     }
 }
