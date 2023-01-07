@@ -3,9 +3,7 @@ package com.example.springbootjpa1.controller;
 import com.example.springbootjpa1.domain.entity.Address;
 import com.example.springbootjpa1.domain.entity.Member;
 import com.example.springbootjpa1.service.MemberService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,7 +35,7 @@ public class MemberController {
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
 
         Member member = new Member();
-        member.setUserName(form.getName());
+        member.setName(form.getName());
         member.setAddress(address);
 
         memberService.join(member);

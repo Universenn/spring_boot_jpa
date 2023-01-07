@@ -31,7 +31,7 @@ public class MemberService {
     private void validateDuplicateMember(Member member) {
         // Exception
         // 동시에 하면 이 예외처리를 통과한다. 고로 두명이 회원가입이 된다. 그래서 실무에서는 memberName 같은 경우를 유니크를 걸어 준다.
-        List<Member> findMembers = memberRepository.findByName(member.getUserName());
+        List<Member> findMembers = memberRepository.findByName(member.getName());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원 입니다.");
         }

@@ -100,7 +100,7 @@ public class OrderRepository {
     public List<Order> findAll(OrderSearch orderSearch) {
         List<Order> resultList = em.createQuery("select o from Order o join o.member m" +
                 " where o.status = :status" +
-                " and m.userName like :name", Order.class)
+                " and m.name like :name", Order.class)
                 .setParameter("status", orderSearch.getOrderStatus())
                 .setParameter("name", orderSearch.getMemberName())
 //                .setFirstResult(1000) // 결과 1000 개 제한 페이징 처리

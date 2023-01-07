@@ -41,7 +41,7 @@ public class OrderServiceTest {
 
     private Member getMember() {
         Member member = new Member();
-        member.setUserName("woo");
+        member.setName("woo");
         member.setAddress(new Address("서울", "특별시", "강동구"));
         em.persist(member);
         return member;
