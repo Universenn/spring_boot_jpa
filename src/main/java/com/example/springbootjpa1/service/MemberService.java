@@ -52,5 +52,10 @@ public class MemberService {
     }
 
 
-
+    @Transactional //
+    public void update(Long id, String name) {
+        Member one = memberRepository.findOne(id); // 영속석 컨텐스트에 의해 알아서 저장하게 해줌
+        one.setName(name);
+//        memberRepository.save(one);
+    }
 }
